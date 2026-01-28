@@ -21,3 +21,6 @@ logs/*.log
 # OS
 .DS_Store
 Thumbs.db
+
+# txt files
+*.txt
