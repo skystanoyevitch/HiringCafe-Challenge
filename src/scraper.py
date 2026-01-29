@@ -84,7 +84,7 @@ def scrape_single_site(base_domain):
     Scrape all jobs from a single Avature site.
     
     Args:
-        base_domain: Full domain URL like 'https://bloomberg.avature.net'
+        base_domain: Full domain URL like 'https://bloomberg.avature.net' or 'https://bloomberg.avature.net/careers'
     
     Returns:
         List of job dictionaries with all data, or empty list on failure
@@ -92,8 +92,13 @@ def scrape_single_site(base_domain):
     # Extract domain name for display
     domain_name = base_domain.replace('https://', '').replace('http://', '')
     
+    # Normalize URL: remove trailing slash and /careers if present
+    base_clean = base_domain.rstrip('/')
+    if base_clean.endswith('/careers'):
+        base_clean = base_clean[:-8]  # Remove '/careers'
+    
     # Build search URL
-    search_url = f"{base_domain}/careers/SearchJobs"
+    search_url = f"{base_clean}/careers/SearchJobs"
     
     print("=" * 60)
     print(f"Scraping {domain_name}")
@@ -183,11 +188,14 @@ def main():
     
     # For testing, scrape first 5 sites only
     # Remove this limit for full scrape
-    test_mode = True
+    test_mode = False  # Changed to False for full scrape
     if test_mode:
         print("\n⚠️  TEST MODE: Scraping first 5 sites only")
         print("To scrape all sites, set test_mode = False in main()")
         all_urls = all_urls[:5]
+    else:
+        print(f"\n🚀 FULL SCRAPE MODE: Scraping all {len(all_urls)} sites")
+        print("This will take several hours. Progress is saved after each site.")
     
     # Track statistics
     all_jobs = []
