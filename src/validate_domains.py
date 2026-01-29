@@ -1,6 +1,6 @@
 import requests
 
-# Test if domains are valid or not
+# Test if Google discovery domains are valid or not
 def get_valid_domains():
     with open('data/domain_discovery.txt', 'r') as f:
         read_domains = f.readlines()
