@@ -11,6 +11,7 @@ ENV/
 # Project specific
 logs/*.log
 *.pyc
+scrape.log
 
 # IDE
 .vscode/
@@ -22,5 +23,22 @@ logs/*.log
 .DS_Store
 Thumbs.db
 
-# txt files
-*.txt
+# Internal development files (not needed for submission)
+PHASE4_COMPLETE.md
+SUBMISSION_NOTES.md
+verify_submission.py
+
+# Large/unnecessary files
+data/avature_urls_starter_pack.txt
+
+# Backup files
+src/scraper_old_backup.py
+
+# Keep these (show discovery process):
+# - data/domain_discovery.txt
+# - data/discover_valid_domains.txt
+# - data/ct_discovered_domains.txt
+# - data/company_names.txt
+# - data/crt_domain_results.json
+# - data/avature_urls_clean.txt
+# - requirements.txt

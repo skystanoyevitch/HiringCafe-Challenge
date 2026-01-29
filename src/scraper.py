@@ -1,3 +1,20 @@
+"""
+Avature ATS Web Scraper
+
+This module provides functionality to scrape job postings from Avature-hosted
+career sites. It handles pagination, job detail extraction, and data persistence.
+
+Main Features:
+- Domain-agnostic scraping (works on any Avature site)
+- Automatic pagination handling
+- Job description extraction from detail pages
+- Incremental progress saving
+- Robust error handling
+
+Author: Sky Stanoyevitch
+Date: January 2026
+"""
+
 import requests
 import re
 import math
@@ -9,7 +26,18 @@ from bs4 import BeautifulSoup
 
 
 def fetch_page(url):
-    """Fetch HTML content from a URL"""
+    """
+    Fetch HTML content from a URL with timeout and error handling.
+    
+    Args:
+        url (str): The URL to fetch
+        
+    Returns:
+        str: HTML content if successful, None if error occurs
+        
+    Raises:
+        No exceptions raised - errors are caught and logged
+    """
     try:
         response = requests.get(url, timeout=10)
         response.raise_for_status()
